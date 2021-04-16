@@ -11,7 +11,7 @@ getRandomUser()
 getRandomUser()
 getRandomUser()
 
-// Fetch random user and add money
+// fetch random user and add money
 async function getRandomUser() {
     const res = await fetch('https://randomuser.me/api');
     const data = await res.json()
@@ -25,6 +25,7 @@ async function getRandomUser() {
     addData(newUser)
 }
 
+// double everyone's money
 function doubleMoney() {
     data = data.map(user => {
         return {
@@ -34,6 +35,13 @@ function doubleMoney() {
     })
     updateDOM()
 }
+
+// sort users by richest
+function sortByRichest() {
+    data.sort((a, b) => (b.money - a.money))
+    updateDOM()
+}
+
 
 // add new obj to data arr
 function addData(obj) {
@@ -64,3 +72,4 @@ function formatMoney(number) {
 // add event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
+sortBtn.addEventListener('click', sortByRichest);
