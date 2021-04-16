@@ -20,7 +20,7 @@ async function getRandomUser() {
 
     const newUser = {
         name: `${user.name.first} ${user.name.last}`,
-        money: formatMoney(Math.floor(Math.random() * 1000000 + 1))
+        money: Math.floor(Math.random() * 1000000 + 1)
     }
     addData(newUser)
 }
@@ -29,7 +29,7 @@ async function getRandomUser() {
 function doubleMoney() {
     data = data.map(user => {
         return {
-            ...user, money,
+            ...user,
             money: user.money * 2
         }
     })
@@ -39,6 +39,12 @@ function doubleMoney() {
 // sort users by richest
 function sortByRichest() {
     data.sort((a, b) => (b.money - a.money))
+    updateDOM()
+}
+
+// filter millionaires
+function showMillionaires() {
+    data = data.filter(user => user.money > 1000000)
     updateDOM()
 }
 
@@ -58,7 +64,7 @@ function updateDOM(providedData = data) {
     providedData.forEach(item => {
         const element = document.createElement('div')
         element.classList.add('person');
-        element.innerHTML = `<strong>${item.name}</strong> ${item.money}`;
+        element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
         main.appendChild(element)
     })
 }
@@ -73,3 +79,4 @@ function formatMoney(number) {
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortBtn.addEventListener('click', sortByRichest);
+showMillionairesBtn.addEventListener('click', showMillionaires);
