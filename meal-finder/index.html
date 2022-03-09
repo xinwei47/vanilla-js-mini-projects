@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></script>
     <title>Meal Finder App</title>
   </head>
   <body>
-    <h1>Meal Finder</h1>
-    <form action="" class="search-form">
-      <div>
+    <h1 class="page-heading">Meal Finder</h1>
+    <div class="search">
+      <form action="" class="search-form">
         <div class="search-form__group-control">
           <input
             type="text"
@@ -21,13 +21,16 @@
           />
         </div>
         <div class="search-form__group-control btn-container">
-          <button class="search-form__btn btn-primary">Search</button>
+          <button class="search-form__btn btn-primary">
+            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+            Search
+          </button>
         </div>
-      </div>
-    </form>
+      </form>
 
-    <div class="btn-container">
-      <button class="shuffle-btn btn-primary">Shuffle</button>
+      <div class="search-shuffle btn-container">
+        <button class="search-shuffle__btn btn-primary">Shuffle</button>
+      </div>
     </div>
 
     <ul class="results"></ul>
