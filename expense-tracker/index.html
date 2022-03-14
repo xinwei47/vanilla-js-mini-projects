@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Expense Tracker</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading">Expense Tracker</h1>
+
+      <section class="summary">
+        <div class="summary__balance">
+          <h2 class="summary__balance-heading">Your Balance</h2>
+          <p class="summary__balance-amt"></p>
+        </div>
+
+        <div class="summary__details">
+          <div class="summary__item">
+            <h3 class="summary__item-heading">Income</h3>
+            <p class="summary__stats summary__income"></p>
+          </div>
+          <div class="summary__item">
+            <h3 class="summary__item-heading">Expense</h3>
+            <p class="summary__stats summary__expense"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="history">
+        <h2>History</h2>
+        <ul class="history__list"></ul>
+      </section>
+
+      <section class="add-item">
+        <h2>Add new transaction</h2>
+        <form action="" class="form">
+          <div class="form__group-control">
+            <label for="item-text" class="form__label">Text</label>
+            <input
+              class="form__input form__text-input"
+              type="text"
+              name="text"
+              id="item-text"
+              placeholder="Enter text..."
+            />
+          </div>
+          <div class="form__group-control">
+            <label for="item-amount" class="form__label">Amount</label>
+            <p>(negative - expense, positive - income)</p>
+            <input
+              class="form__input form__amt-input"
+              type="text"
+              name="amount"
+              id="item-amount"
+            />
+          </div>
+          <div class="form__group-control">
+            <button type="submit" class="form__btn">Add Transaction</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
