@@ -19,6 +19,14 @@ const pwdErr2 = document.querySelector('.error__pwd2');
 
 const submitBtn = document.querySelector('button');
 
+const popupBox = document.querySelector('.popup-box');
+const popup = document.querySelector('.popup');
+
+let usernameIsValid = false;
+let emailIsValid = false;
+let pwdIsValid = false;
+let pwd2IsValid = false;
+
 inputs.forEach((input, ind) => {
   let inputTouched = false;
 
@@ -53,11 +61,6 @@ const validateInput = (input, id) => {
   }
 };
 
-let usernameIsValid = false;
-let emailIsValid = false;
-let pwdIsValid = false;
-let pwd2IsValid = false;
-
 const validateUsername = (username) => {
   usernameErr.innerHTML = '';
   checkInputEmpty(username, usernameErr);
@@ -65,9 +68,16 @@ const validateUsername = (username) => {
   const usernameVal = username.value.toLowerCase().trim();
   if (usernameVal !== '') {
     if (/[^a-z0-9]/.test(usernameVal)) {
-      addErrMsg('Username can only include letters and numbers.', usernameErr);
+      showErr(
+        username,
+        'Username can only include letters and numbers.',
+        usernameErr
+      );
+      //   username.className = 'invalid';
     } else {
       usernameIsValid = true;
+      //   username.className = 'valid';
+      showSuccess(username);
     }
   }
   return;
@@ -84,9 +94,10 @@ const validateEmail = (email) => {
       !emailVal.includes('@') ||
       emailVal.includes(' ')
     ) {
-      addErrMsg('Email address is not valid.', emailErr);
+      showErr(email, 'Email address is not valid.', emailErr);
     } else {
       emailIsValid = true;
+      showSuccess(email);
     }
   }
   return;
@@ -100,53 +111,60 @@ const validatePwd = (pwd) => {
   const pwdVal = pwd.value;
   if (pwdVal !== '') {
     if (pwdVal.length < 8) {
-      addErrMsg('Password must be at least 8 characters.', pwdErr);
+      showErr(pwd, 'Password must be at least 8 characters.', pwdErr);
     }
     if (!/[a-z]/.test(pwdVal)) {
-      addErrMsg('Password must include lowercase letters a-z.', pwdErr);
+      showErr(pwd, 'Password must include lowercase letters a-z.', pwdErr);
     }
     if (!/[A-Z]/.test(pwdVal)) {
-      addErrMsg('Password must include uppercase letters A-Z.', pwdErr);
+      showErr(pwd, 'Password must include uppercase letters A-Z.', pwdErr);
     }
     if (!/[\d]/.test(pwdVal)) {
-      addErrMsg('Password must include numbers 0-9.', pwdErr);
+      showErr(pwd, 'Password must include numbers 0-9.', pwdErr);
     }
     pwdIsValid = true;
+    showSuccess(pwd);
   }
 };
+
 const validatePwd2 = (pwd2) => {
   pwdErr2.innerHTML = '';
   checkInputEmpty(pwd2, pwdErr2);
 
   const pwdVal2 = pwd2.value;
   if (pwdVal2 !== '' && pwdVal2 !== password.value) {
-    addErrMsg("Password doesn't match.", pwdErr2);
+    showErr(pwd2, "Password doesn't match.", pwdErr2);
   } else {
     pwd2IsValid = true;
+    showSuccess(pwd2);
   }
 };
 
 const checkInputEmpty = (input, errList) => {
   if (input.value.trim() === '') {
-    addErrMsg('Field cannot be empty.', errList);
+    showErr(input, 'Field cannot be empty.', errList);
+    input.className = 'invalid';
   }
   return;
 };
 
-const addErrMsg = (msg, errList) => {
+const showErr = (input, msg, errList) => {
   const li = document.createElement('li');
   li.innerText = msg;
   errList.append(li);
+
+  input.className = 'invalid';
 };
 
-const popupBox = document.querySelector('.popup-box');
-const popup = document.querySelector('.popup');
+const showSuccess = (input) => {
+  input.className = 'valid';
+};
 
 const submitForm = (event) => {
   event.preventDefault();
-  inputs.forEach((input) => {
-    validateInput(document.querySelector(`#${input.id}`), input.id);
-  });
+  //   inputs.forEach((input) => {
+  //     validateInput(document.querySelector(`#${input.id}`), input.id);
+  //   });
 
   const formIsValid =
     usernameIsValid && emailIsValid && pwdIsValid && pwd2IsValid;
