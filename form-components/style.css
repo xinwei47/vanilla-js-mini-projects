@@ -42,6 +42,7 @@ form {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  width: 100%;
 }
 
 label {
@@ -60,28 +61,50 @@ label {
 }
 
 /* style slider */
-#rate {
-  margin-top: 1.6rem;
+#slider {
+  margin-top: 3.2rem;
   appearance: none;
   width: 100%;
   height: 7px;
   outline: none;
-  background-color: #83c5be;
+  /* manipulate the % to change the progress bar  */
+  background: linear-gradient(90deg, #83c5be 50%, #fff 50%);
   border-radius: 6px;
+  position: relative;
 }
 
-/* -webkit-slider-thumb: selector button */
-#rate::-webkit-slider-thumb {
+/* -webkit-slider-thumb: slider button */
+#slider::-webkit-slider-thumb {
   appearance: none;
   width: 15px;
   height: 15px;
   background-color: #073b4c;
   border-radius: 50%;
-  /* box-shadow: -407px 0 0 400px #83c5be; */
 }
 
-#rate::-webkit-slider-runnable-track {
-  appearance: none;
+#slider::before {
+  content: '0';
+  position: absolute;
+  top: -20px;
+  font-weight: 700;
+}
+
+#slider::after {
+  content: '10';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  font-weight: 700;
+}
+
+.sliderText {
+  font-weight: 500;
+  margin-top: 1.6rem;
+  text-align: right;
+}
+
+.sliderVal {
+  color: #83c5be;
 }
 
 legend {
@@ -120,4 +143,85 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+/* radio button styling */
+.radio-group {
+}
+
+.radio__input {
+  display: none;
+}
+
+.radio__label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.radio__btn {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #83c5be;
+  border-radius: 50%;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio__btn::after {
+  content: '';
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: #83c5be;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.radio__input:checked ~ .radio__label > .radio__btn::after {
+  opacity: 1;
+}
+
+/* dropdown styling */
+.select-box {
+  /* background: #83c5be; */
+  position: relative;
+  width: 100%;
+}
+
+select {
+  width: 100%;
+}
+
+.custom-arrow {
+  width: 10px;
+  height: 10px;
+  background-color: #83c5be;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 4rem;
+  border-radius: 0 4px 4px 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.custom-arrow::after {
+  content: '';
+  background-color: #fff;
+  height: 15px;
+  width: 15px;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform: translateY(4px);
+}
+
+.select-box.active .custom-arrow::after {
+  transform: rotateX(180deg) translateY(4px);
 }
