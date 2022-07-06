@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <!-- slider -->
+    <!-- select -->
+    <!-- radio button -->
+    <!-- dropdown box -->
+    <form action="">
+      <h1>Customer Survey Form</h1>
+      <div class="group-control">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter email" />
+      </div>
+
+      <div class="group-control">
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender">
+          <option value="">--Please choose an option--</option>
+          <option value="female">Female</option>
+          <option value="Male">Male</option>
+          <option value="na">Prefer not to tell</option>
+        </select>
+      </div>
+
+      <div class="group-control">
+        <label for="rate">How likely you would recommend us to a friend?</label>
+        <input id="rate" type="range" min="1" max="10" step="1" value="5" />
+      </div>
+
+      <div class="group-control">
+        <legend>Overall satisfaction of our service</legend>
+        <div class="radio">
+            <input
+              type="radio"
+              id="satisfied"
+              name="satisfaction"
+              value="satisfied"
+            />
+          <label for="satisfied">Satisfied</label>
+        </div>
+        <div class="radio">
+            <input
+              type="radio"
+              id="neutral"
+              name="satisfaction"
+              value="neutral"
+            />
+          <label for="neutral">Neutral</label>
+        </div>
+        <div class="radio">
+            <input
+              type="radio"
+              id="dissatisfied"
+              name="satisfaction"
+              value="dissatisfied"
+            />
+          <label for="dissatisfied">Dissatisfied</label>
+        </div>
+        <div class="btn-container">
+            <button>Submit</button>
+        </div>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
