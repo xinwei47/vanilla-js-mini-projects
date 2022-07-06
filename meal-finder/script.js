@@ -12,6 +12,7 @@ const searchMeals = async (e) => {
   const res = await axios.get(
     `http://www.themealdb.com/api/json/v1/1/search.php?s=${term}`
   );
+  console.log(res);
   const meals = res.data.meals;
   displayResults(term, meals);
 };
@@ -24,13 +25,13 @@ const displayResults = (term, data) => {
   const resultsHeading = document.createElement('h2');
   const results = document.createElement('ul');
 
-  resultsHeading.textContent = `Search results for "${term}"`;
+  resultsHeading.innerText = `Search results for "${term}"`;
   results.classList.add('results');
 
   resultsContainer.append(resultsHeading);
   resultsContainer.append(results);
 
-  data.map((item) => {
+  data.forEach((item) => {
     const list = document.createElement('li');
     list.classList.add('results__item');
     list.innerHTML = `
